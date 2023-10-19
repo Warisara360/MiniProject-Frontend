@@ -1,151 +1,77 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
+  <div>
+    <Appbar />
+    <div>
+      <v-carousel
+        cycle
+        height="530"
+        hide-delimiter-background
+        show-arrows-on-hover
+        
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+      <v-carousel-item v-for="(slide, i) in slides" :key="i">
+          <div class="image-container">
+            <v-img
+              :src="imageUrls[i]"
+              height="100%"
+            ></v-img>
+            <div class="backdrop"></div>
+           
+          </div>
+        </v-carousel-item>
+      </v-carousel>
+    </div>
+    <div>
+      <template>
+  <v-footer padless style="background-color: #009688;">
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      <body style="color: white;">SOUTHERN FOOD</body>
+    </v-col>
+  </v-footer>
+</template>
+    </div>
+  </div>
 </template>
 
 <script>
+import p1 from "../assets/p1.jpg";
+import p2 from "../assets/p2.jpg";
+import p3 from "../assets/p3.jpg";
+import p4 from "../assets/p4.jpg";
+import Appbar from "../components/Appbar.vue";
 export default {
-  name: 'HelloWorld',
-
-  data: () => ({
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
-      }
-    ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
-      },
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
-      }
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-      }
-    ]
-  })
-}
+  name: "HomeView",
+  components: {
+    Appbar,
+  },
+  data() {
+    return {
+      slides: ["First", "Second", "Third", "Fourth"],
+      imageUrls: [p1, p2, p3, p4],
+    };
+  },
+};
 </script>
+<style scoped>
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  transition: opacity 0.3s;
+}
+
+.image-container:hover .backdrop {
+  opacity: 1;
+}
+</style>

@@ -1,0 +1,14 @@
+<template>
+    <Category />
+  </template>
+  
+  <script>
+  import Category from '../components/Category'
+  
+  export default {
+    name: 'CategoryView',
+    components: {
+        Category
+    }
+  }
+  </script>
